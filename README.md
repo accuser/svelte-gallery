@@ -1,40 +1,40 @@
-# create-svelte
+# Svelte Gallery
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+A lightweight gallery component for use in Svelte and SvelteKit projects.
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
+## Install the package
 
 ```bash
-# create a new project in the current directory
-npm init svelte@next
-
-# create a new project in my-app
-npm init svelte@next my-app
+npm i --save-dev @accuser/svelte-gallery
 ```
 
-> Note: the `@next` is temporary
+## Examples
 
-## Developing
+```svelte
+<script lang="ts">
+	import { Gallery } from '@accuser/svelte-gallery';
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+	const items = [
+		{
+			alt: 'photo frames inside building',
+			src: 'https://images.unsplash.com/photo-1507643179773-3e975d7ac515?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1280&h=720&q=80',
+			caption: 'A photography exhibit, indoors (obviously).'
+		},
+		{
+			alt: 'The ArtScience Museum from the bay in Singapore',
+			src: 'https://images.unsplash.com/photo-1655742043955-96ddc29cdfd9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1280&h=720&q=80',
+			caption: 'The ArtScience Museum from the bay in Singapore'
+		},
+		{
+			alt: 'The Old man of Storr',
+			src: 'https://images.unsplash.com/photo-1506368670575-2ecb8dd6d86e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1280&h=720&q=80',
+			caption:
+				'It took one day for our company consisting of 6 (tough?) guys to walk from Portree to the Old man of Storr. Our boots where completely soaked. There’s not such a thing like ‘hiking paths’ in Skye. The day after, 4 of the 6 guys went up the hill to see the amazing rock formation!'
+		}
+	];
+</script>
 
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+<div class="mx-auto flex max-w-screen-md flex-col justify-center">
+	<Gallery {items} />
+</div>
 ```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
