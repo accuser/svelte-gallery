@@ -10,7 +10,7 @@
 </script>
 
 <div
-	class="aspect-w-16 aspect-h-9 w-full bg-cover bg-center transition-all duration-300"
+	class="aspect-w-16 aspect-h-9 w-full bg-cover bg-center transition-all duration-500"
 	style="background-image: url({item.src});"
 >
 	<div class="flex flex-row items-center justify-between">
