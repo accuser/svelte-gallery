@@ -1,5 +1,5 @@
 {
-	"name": "svelte-kit-template",
+	"name": "svelte-gallery",
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "svelte-kit dev",
