@@ -10,7 +10,7 @@
 </script>
 
 <div
-	class="w-full aspect-w-16 aspect-h-9 bg-cover bg-center "
+	class="aspect-w-16 aspect-h-9 w-full bg-cover bg-center "
 	style="background-image: url({item.src});"
 >
 	<div class="flex flex-row items-center justify-between">
@@ -40,7 +40,7 @@
 		</span>
 	</div>
 </div>
-<p class="my-4 h-24 line-clamp-4">{item.caption}</p>
+<p class="my-4 truncate">{item.caption}</p>
 <div class="flex gap-4">
 	{#each items as { alt, src }, index}
 		<img {alt} {src} on:click={() => (curr = index)} />
@@ -53,7 +53,7 @@
 	}
 
 	span {
-		@apply text-white opacity-50 hover:opacity-75 transition-opacity;
+		@apply text-white opacity-50 transition-opacity hover:opacity-75;
 	}
 
 	svg {
