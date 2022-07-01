@@ -21,6 +21,6 @@
 	];
 </script>
 
-<div class="max-w-screen-md mx-auto flex flex-col justify-center">
+<div class="mx-auto flex max-w-screen-md flex-col justify-center">
 	<Gallery {items} />
 </div>
