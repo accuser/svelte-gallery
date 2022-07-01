@@ -3,10 +3,6 @@
 	import ChevronRightIcon from './ChevronRightIcon.svelte';
 	import Image from './Image.svelte';
 
-	let klass: string = '';
-
-	export { klass as class };
-
 	export let items: { alt: string; caption?: string; src: string }[];
 
 	$: curr = 0;
@@ -27,7 +23,7 @@
 		</span>
 		{#key curr}
 			<div>
-				<Image class={klass} {...item} />
+				<Image {...item} />
 			</div>
 		{/key}
 		<span

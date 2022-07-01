@@ -1,19 +1,13 @@
 <script lang="ts">
-	import clsx from 'clsx';
-
-	let klass: string = '';
-
-	export { klass as class };
-
 	export let alt: string;
 	export let caption: string = alt;
 	export let src: string;
 	export let srcset: string[] = [];
 </script>
 
-<div class={clsx(klass, 'text-black bg-white')}>
+<div class="text-black bg-white">
 	<figure class="relative">
-		<div class=" aspect-w-16 aspect-h-9 overflow-clip">
+		<div class="aspect-w-16 aspect-h-9 overflow-clip">
 			{#if srcset}
 				<picture>
 					<source srcset={srcset.join(',')} />
