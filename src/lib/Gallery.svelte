@@ -1,47 +1,67 @@
 <script lang="ts">
-	import ChevronLeftIcon from './ChevronLeftIcon.svelte';
-	import ChevronRightIcon from './ChevronRightIcon.svelte';
-	import Image from './Image.svelte';
-
 	export let items: { alt: string; caption?: string; src: string }[];
+	export let wrap: boolean = false;
 
 	$: curr = 0;
 	$: item = items[curr];
 
-	$: prev = curr > 0 ? curr - 1 : items.length - 1;
-	$: next = curr < items.length - 1 ? curr + 1 : 0;
+	$: prev = curr > 0 ? curr - 1 : wrap ? items.length - 1 : curr;
+	$: next = curr < items.length - 1 ? curr + 1 : wrap ? 0 : curr;
 </script>
 
-<div>
-	<div class="relative">
-		<span
-			class="absolute left-0 top-0 bottom-0 z-10 flex items-center text-white opacity-50 hover:opacity-75"
-			class:prev={prev !== curr}
-			on:click={() => (curr = prev)}
-		>
-			<ChevronLeftIcon class="h-24 stroke-1" />
+<div
+	class="w-full aspect-w-16 aspect-h-9 bg-cover bg-center "
+	style="background-image: url({item.src});"
+>
+	<div class="flex flex-row items-center justify-between">
+		<span on:click={() => (curr = prev)}>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class:prev={prev !== curr}
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1"
+				viewBox="0 0 24 24"
+			>
+				<path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+			</svg>
 		</span>
-		{#key curr}
-			<div>
-				<Image {...item} />
-			</div>
-		{/key}
-		<span
-			class="absolute top-0 right-0 bottom-0 flex items-center z-10 text-white opacity-50 hover:opacity-75"
-			class:next={next !== curr}
-			on:click={() => (curr = next)}
-		>
-			<ChevronRightIcon class="h-24 stroke-1" />
+		<span on:click={() => (curr = next)}>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class:next={next !== curr}
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1"
+				viewBox="0 0 24 24"
+			>
+				<path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+			</svg>
 		</span>
-	</div>
-	<div class="mt-2 md:mt-4 flex items-center justify-start gap-2 md:gap-4">
-		{#each items as { alt, src }, index}
-			<img
-				{alt}
-				{src}
-				class="h-8 w-8 md:h-16 md:w-16 object-cover opacity-75 hover:opacity-100"
-				on:click={() => (curr = index)}
-			/>
-		{/each}
 	</div>
 </div>
+<p class="my-4 h-24 line-clamp-4">{item.caption}</p>
+<div class="flex gap-4">
+	{#each items as { alt, src }, index}
+		<img {alt} {src} on:click={() => (curr = index)} />
+	{/each}
+</div>
+
+<style lang="postcss">
+	img {
+		@apply h-20 w-20 object-cover opacity-75 hover:opacity-100;
+	}
+
+	span {
+		@apply text-white opacity-50 hover:opacity-75 transition-opacity;
+	}
+
+	svg {
+		@apply hidden h-24;
+
+		&.next,
+		&.prev {
+			@apply block;
+		}
+	}
+</style>
